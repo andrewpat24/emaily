@@ -2,6 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
+  "prodURL": "https://ancient-meadow-27611.herokuapp.com/",
   "main": "index.js",
   "engines": {
     "node": "8.8.1",
