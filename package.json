@@ -9,13 +9,16 @@
     "npm": "6.7.0"
   },
   "scripts": {
-    "debug": "nodemon index.js",
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "Andrew Patterson",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
+    "process-env": "^1.1.0"
   }
 }
