@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "npm run {scriptName}",
   "prodURL": "https://ancient-meadow-27611.herokuapp.com/",
   "main": "index.js",
   "engines": {
@@ -9,7 +9,8 @@
     "npm": "6.7.0"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js", 
+    "dev": "nodemon index.js"
   },
   "author": "Andrew Patterson",
   "license": "ISC",
