@@ -4,14 +4,10 @@ require('./services/passport');
 
 const app = express(); 
 const authRouter = require('./routes/auth');
+const indexRouter = require('./routes/index');
 
 app.use('/auth', authRouter);
-
-app.get('/', (req, res) => {
-    res.send({
-        hello: "world"
-    })
-});
+app.use('/', indexRouter);
 
 const PORT = process.env.PORT || 5000; 
 app.listen( PORT );
