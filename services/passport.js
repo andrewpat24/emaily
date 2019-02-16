@@ -10,7 +10,25 @@ passport.use( new GoogleStrategy({
     callbackURL: '/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
     console.log('User successfully fetched from google OAuth!');
-    new User({
-        googleId: profile.id
-    }).save();
+    
+    User.findOne( { googleId: profile.id } )
+        .then( (existingUser) => {
+
+            if(!!existingUser) {
+                
+                console.log('User already exists in collection.');
+                done(null, existingUser); 
+
+            } else {
+
+                new User({
+                    googleId: profile.id
+                }).save().then( (newUser) => {
+                    done(null, newUser);
+                });
+
+            }
+        } );
+
+        
 }) );
