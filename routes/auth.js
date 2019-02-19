@@ -8,10 +8,19 @@ router.get('/google',
     })
 );
 
-router.get('/google/callback', passport.authenticate('google'), function(req, res) {
-    res.send({
-        success:'true'
-    });
-} );
+router.get('/google/callback', 
+    passport.authenticate('google'), (req, res) => {
+        res.send({
+            success:'true'
+        });
+    } 
+);
+
+router.get('/current_user', 
+    (req, res) => {
+        console.log(req.user, req.session);
+        res.send(req.session);
+    }
+);
 
 module.exports = router; 

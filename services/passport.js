@@ -4,6 +4,17 @@ const mongoose = require('mongoose');
 
 const User = mongoose.model('users'); 
 
+passport.serializeUser( (user, done) => {
+    done(null, user.id); 
+});
+
+passport.deserializeUser( (userID, done) => {
+    console.log("userID:", userID);
+    User.findById(userID).then( (user) => {
+        done(null, user);
+    } );
+});
+
 passport.use( new GoogleStrategy({
     clientID: process.env.GOOGLE_OAUTH_ID, 
     clientSecret: process.env.GOOGLE_OAUTH_SECRET, 
@@ -15,7 +26,7 @@ passport.use( new GoogleStrategy({
         .then( (existingUser) => {
 
             if(!!existingUser) {
-                
+
                 console.log('User already exists in collection.');
                 done(null, existingUser); 
 
