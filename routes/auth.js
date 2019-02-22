@@ -19,7 +19,17 @@ router.get('/google/callback',
 router.get('/current_user', 
     (req, res) => {
         console.log(req.user, req.session);
-        res.send(req.session);
+        res.send(req.user);
+    }
+);
+
+router.get('/logout', 
+    (req, res) => {
+        req.logout();
+        const returnObject = {
+            "logged in": !!req.user
+        }
+        res.send(returnObject);
     }
 );
 
