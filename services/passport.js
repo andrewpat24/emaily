@@ -23,7 +23,7 @@ passport.use( new GoogleStrategy({
     resave: false
 }, (accessToken, refreshToken, profile, done) => {
     console.log('User successfully fetched from google OAuth!');
-    
+    console.log('tesashi;dfodjizfbjdifgndjkfghdosihfdshfsdhfhiosdif');
     mongoose.connection.on('open', function (ref) {
         console.log('Connected to mongo server.');
       });
