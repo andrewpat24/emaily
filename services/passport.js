@@ -23,7 +23,7 @@ passport.use( new GoogleStrategy({
     resave: false
 }, (accessToken, refreshToken, profile, done) => {
     console.log('User successfully fetched from google OAuth!');
-    
+    console.log(User);
     User.findOne( { googleId: profile.id } )
         .then( (existingUser) => {
             console.log("line 29 - passport.js file");
