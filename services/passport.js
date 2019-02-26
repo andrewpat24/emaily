@@ -22,9 +22,9 @@ passport.use( new GoogleStrategy({
     proxy: true,
     resave: false
 }, (accessToken, refreshToken, profile, done) => {
-    
+
     console.log('User successfully fetched from google OAuth!');
-    if(console.log(mongoose.connection.readyState) === 0) console.log('DB not connected');
+    if(mongoose.connection.readyState == 0) console.log('DB not connected');
 
     User.findOne( { googleId: profile.id } )
         .then( (existingUser) => {
