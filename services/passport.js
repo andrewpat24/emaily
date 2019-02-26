@@ -26,7 +26,7 @@ passport.use( new GoogleStrategy({
     
     User.findOne( { googleId: profile.id } )
         .then( (existingUser) => {
-            console.log()
+            console.log("line 29 - passport.js file");
             if(!!existingUser) {
 
                 console.log('User already exists in collection.');
