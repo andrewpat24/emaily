@@ -23,7 +23,15 @@ passport.use( new GoogleStrategy({
     resave: false
 }, (accessToken, refreshToken, profile, done) => {
     console.log('User successfully fetched from google OAuth!');
-    console.log(mongoose.connection.readyState);
+    
+    mongoose.connection.on('open', function (ref) {
+        console.log('Connected to mongo server.');
+      });
+      mongoose.connection.on('error', function (err) {
+        console.log('Could not connect to mongo server!');
+        console.log(err);
+      });
+
     User.findOne( { googleId: profile.id } )
         .then( (existingUser) => {
             console.log("line 29 - passport.js file");
