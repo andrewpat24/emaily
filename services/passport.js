@@ -19,7 +19,8 @@ passport.use( new GoogleStrategy({
     clientID: process.env.GOOGLE_OAUTH_ID, 
     clientSecret: process.env.GOOGLE_OAUTH_SECRET, 
     callbackURL: '/auth/google/callback', 
-    proxy: true
+    proxy: true,
+    resave: false
 }, (accessToken, refreshToken, profile, done) => {
     console.log('User successfully fetched from google OAuth!');
     
