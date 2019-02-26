@@ -22,15 +22,9 @@ passport.use( new GoogleStrategy({
     proxy: true,
     resave: false
 }, (accessToken, refreshToken, profile, done) => {
+    
     console.log('User successfully fetched from google OAuth!');
-    console.log('tesashi;dfodjizfbjdifgndjkfghdosihfdshfsdhfhiosdif');
-    mongoose.connection.on('open', function (ref) {
-        console.log('Connected to mongo server.');
-      });
-      mongoose.connection.on('error', function (err) {
-        console.log('Could not connect to mongo server!');
-        console.log(err);
-      });
+    if(console.log(mongoose.connection.readyState) === 0) console.log('DB not connected');
 
     User.findOne( { googleId: profile.id } )
         .then( (existingUser) => {
