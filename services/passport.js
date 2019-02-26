@@ -26,7 +26,7 @@ passport.use( new GoogleStrategy({
     
     User.findOne( { googleId: profile.id } )
         .then( (existingUser) => {
-
+            console.log()
             if(!!existingUser) {
 
                 console.log('User already exists in collection.');
@@ -41,6 +41,8 @@ passport.use( new GoogleStrategy({
                 });
 
             }
+        } ).catch( (e) => {
+            console.log(e);
         } );
 
         
