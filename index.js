@@ -12,6 +12,7 @@ app.listen( PORT );
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URI);
 require('./models/Users');
+console.log(mongoose.connection.readyState);
 
 // Session 
 const cookieSession = require('cookie-session');
