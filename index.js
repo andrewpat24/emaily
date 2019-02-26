@@ -4,6 +4,10 @@ require('dotenv').load();
 const express = require('express');
 const app = express(); 
 
+// PORT
+const PORT = process.env.PORT || 5000; 
+app.listen( PORT );
+
 // Mongoose
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URI);
@@ -30,6 +34,3 @@ const rootRouter = require('./routes/root');
 app.use('/auth', authRouter);
 app.use('/', rootRouter);
 
-// PORT
-const PORT = process.env.PORT || 5000; 
-app.listen( PORT );

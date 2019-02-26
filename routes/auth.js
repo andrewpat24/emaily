@@ -31,7 +31,8 @@ router.get('/logout',
     (req, res) => {
         req.logout();
         const returnObject = {
-            "logged in": !!req.user
+            "logged in": !!req.user,
+            userObj: req.user
         }
         res.send(returnObject);
     }
