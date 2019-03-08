@@ -11,7 +11,7 @@ router.get('/google',
 router.get('/google/callback', 
     passport.authenticate('google'), (req, res) => {
         res.send({
-            success:'true'
+            loggedIn:'true'
         });
     } 
 );

@@ -21,31 +21,22 @@ passport.use( new GoogleStrategy({
     callbackURL: '/auth/google/callback', 
     proxy: true,
     resave: false
-}, (accessToken, refreshToken, profile, done) => {
+}, async (accessToken, refreshToken, profile, done) => {
 
     console.log('User successfully fetched from google OAuth!');
     if(mongoose.connection.readyState == 0) console.log('DB not connected');
 
-    User.findOne( { googleId: profile.id } )
-        .then( (existingUser) => {
-            console.log("line 29 - passport.js file");
-            if(!!existingUser) {
+    const existingUser = await User.findOne( { googleId: profile.id } )
+    if(!!existingUser) {
 
-                console.log('User already exists in collection.');
-                done(null, existingUser); 
+        console.log('User already exists in collection.');
+        done(null, existingUser); 
+    } else {
 
-            } else {
+        const newUser = await new User({
+            googleId: profile.id
+        }).save();
 
-                new User({
-                    googleId: profile.id
-                }).save().then( (newUser) => {
-                    done(null, newUser);
-                });
-
-            }
-        } ).catch( (e) => {
-            console.log(e);
-        } );
-
-        
+        done(null, newUser);
+    }
 }) );
