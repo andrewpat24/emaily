@@ -10,9 +10,7 @@ router.get('/google',
 
 router.get('/google/callback', 
     passport.authenticate('google'), (req, res) => {
-        res.send({
-            loggedIn:'true'
-        });
+       res.redirect('/surveys');
     } 
 );
 
@@ -24,7 +22,7 @@ router.get('/current_user',
             "loggedIn": !!req.user, 
             userObj: req.user
         }
-        
+
         res.send(returnObject);
     }
 );
@@ -32,13 +30,7 @@ router.get('/current_user',
 router.get('/logout', 
     (req, res) => {
         req.logout();
-
-        const returnObject = {
-            "loggedIn": !!req.user,
-            userObj: req.user
-        }
-
-        res.send(returnObject);
+        res.redirect('/');
     }
 );
 
