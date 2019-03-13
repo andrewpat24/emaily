@@ -20,7 +20,7 @@ router.get('/current_user',
     (req, res) => {
         console.log(req.user, req.session);
         const returnObject = {
-            "logged in": !!req.user, 
+            "loggedIn": !!req.user, 
             userObj: req.user
         }
         res.send(returnObject);
@@ -31,7 +31,7 @@ router.get('/logout',
     (req, res) => {
         req.logout();
         const returnObject = {
-            "logged in": !!req.user,
+            "loggedIn": !!req.user,
             userObj: req.user
         }
         res.send(returnObject);

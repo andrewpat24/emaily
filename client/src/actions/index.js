@@ -6,7 +6,7 @@ export function fetchUser () {
         const res = await axios.get('/auth/current_user');
         dispatch({
             type: FETCH_USER,
-            payload: res
+            payload: res.data
         });
     }
 }
