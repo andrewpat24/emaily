@@ -8,19 +8,23 @@ class Header extends Component {
         if(this.props.auth !== null ) {
             AuthState = this.props.auth.loggedIn
         }
+
         switch (AuthState) {
             case null: 
-                return 'Still deciding'
+                return;
                 break; 
             case false: 
-                return 'Logged out'
+                return (
+                    <a href="/auth/google">Login with Google</a>
+                )
                 break; 
             case undefined: 
-                return 'undefined'
+                return;
                 break; 
-            default:  
-                console.log(this.props.auth.loggedIn);
-                return 'Logged in'
+            default: 
+                return (
+                    <a href="/auth/logout">Logout</a>
+                )
         }
     }
 
@@ -29,12 +33,13 @@ class Header extends Component {
         return (
             <nav>
                 <div className="nav-wrapper" >
+                   
                     <a href="/" className="left brand-logo">
                         Emaily
                     </a>
+                    
                     <ul className="right">
                         <li>
-                            {/* <a href="/auth/google">Login with Google</a> */}
                             { this.renderContent() }
                         </li>
                     </ul>
