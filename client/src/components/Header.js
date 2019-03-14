@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
+
     renderContent() {
 
         let AuthState = this.props.auth
-        if(this.props.auth !== null ) {
+        if( this.props.auth !== null ) {
             AuthState = this.props.auth.loggedIn
         }
 
@@ -26,17 +28,24 @@ class Header extends Component {
                     <a href="/auth/logout">Logout</a>
                 )
         }
+        
     }
 
     render () {
         console.log("auth:", this.props.auth);
+
+        let AuthState = this.props.auth
+        if( this.props.auth !== null ) {
+            AuthState = this.props.auth.loggedIn
+        }
+
         return (
             <nav>
                 <div className="nav-wrapper" >
                    
-                    <a href="/" className="left brand-logo">
+                    <Link to={AuthState ? '/surveys' : '/'} className="left brand-logo">
                         Emaily
-                    </a>
+                    </Link>
                     
                     <ul className="right">
                         <li>
