@@ -11,6 +11,9 @@ class Header extends Component {
         if( this.props.auth !== null ) {
             AuthState = this.props.auth.loggedIn
         }
+        console.log("------------------------------");
+        console.log(this.props.auth);
+        console.log("------------------------------");        
 
         switch (AuthState) {
             case null: 
