@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Payments from './Payments';
@@ -20,24 +20,16 @@ class Header extends Component {
                 return;
                 break; 
             case false: 
-                return (
-                    <div>
-                        <li>
-                            <a href="/auth/google">Login with Google</a>
-                        </li>
-                    </div>
-                )
+                return ([
+                    <li> <a href="/auth/google">Login with Google</a> </li>
+                ])
                 break; 
             default: 
                 return (
-                    <div>
-                        <li>
-                            <a href="/auth/logout">Logout</a>
-                        </li>
-                        <li>
-                            <a href="/auth/logout">Logout</a>
-                        </li>
-                    </div>
+                    <Fragment>
+                        <li > <a><Payments /></a> </li>
+                        <li > <a href="/auth/logout">Logout</a> </li>
+                    </Fragment>
                 )
         }
 

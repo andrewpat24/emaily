@@ -30,7 +30,9 @@ app.use(passport.session());
 
 // Routes 
 const authRouter = require('./routes/auth');
+const billingRouter = require('./routes/billing');
 const rootRouter = require('./routes/root');
 app.use('/auth', authRouter);
+app.use('/billing', billingRouter);
 app.use('/', rootRouter);
 
