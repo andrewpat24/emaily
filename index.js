@@ -3,10 +3,14 @@ require('dotenv').load();
 // Express
 const express = require('express');
 const app = express(); 
+const bodyParser = require('body-parser');
 
 // PORT
 const PORT = process.env.PORT || 5000; 
 app.listen( PORT );
+
+// Body Parser
+app.use(bodyParser.json());
 
 // Mongoose
 const mongoose = require('mongoose');
@@ -32,7 +36,11 @@ app.use(passport.session());
 const authRouter = require('./routes/auth');
 const billingRouter = require('./routes/billing');
 const rootRouter = require('./routes/root');
+
 app.use('/auth', authRouter);
 app.use('/billing', billingRouter);
 app.use('/', rootRouter);
+
+
+
 
