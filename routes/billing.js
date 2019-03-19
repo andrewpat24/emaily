@@ -6,6 +6,12 @@ const stripe = require('stripe')(
 
 router.post("/stripe", async (req, res) => {
 
+    if(!req.user) {
+        return res.status(401).send({
+            error: 'User must be logged in to add credits.'
+        });
+    } 
+
     const charge = await stripe.charges.create({
         amount: 500, 
         currency: 'usd', 

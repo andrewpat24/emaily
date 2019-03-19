@@ -8,13 +8,10 @@ class Header extends Component {
     renderContent() {
 
         let AuthState = this.props.auth
-        if( this.props.auth !== null ) {
-            AuthState = this.props.auth
+        if( this.props.auth !== null || this.props.auth !== undefined) {
+            AuthState = this.props.auth; 
         }
-        console.log("------------------------------");
-        console.log(this.props.auth);
-        console.log("------------------------------");        
-
+        
         switch (AuthState) {
             case null: 
                 return;
@@ -32,6 +29,7 @@ class Header extends Component {
             default: 
                 return (
                     <Fragment>
+                        <li> Credits: </li> 
                         <li > <a><Payments /></a> </li>
                         <li > <a href="/auth/logout">Logout</a> </li>
                     </Fragment>
