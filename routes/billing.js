@@ -3,14 +3,9 @@ const router = express.Router();
 const stripe = require('stripe')(
     process.env.STRIPE_SECRET
 );
+const requireLogin = require('../middleware/requireLogin');
 
-router.post("/stripe", async (req, res) => {
-
-    if(!req.user) {
-        return res.status(401).send({
-            error: 'User must be logged in to add credits.'
-        });
-    } 
+router.post("/stripe", requireLogin, async (req, res) => {
 
     const charge = await stripe.charges.create({
         amount: 500, 
