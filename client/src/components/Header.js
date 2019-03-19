@@ -9,7 +9,7 @@ class Header extends Component {
 
         let AuthState = this.props.auth
         if( this.props.auth !== null ) {
-            AuthState = this.props.auth.loggedIn
+            AuthState = this.props.auth
         }
         console.log("------------------------------");
         console.log(this.props.auth);
@@ -23,9 +23,11 @@ class Header extends Component {
                 return;
                 break; 
             case false: 
-                return ([
-                    <li> <a href="/auth/google">Login with Google</a> </li>
-                ])
+                return (
+                    <Fragment>
+                        <li> <a href="/auth/google">Login with Google</a> </li>
+                    </Fragment>
+                )
                 break; 
             default: 
                 return (

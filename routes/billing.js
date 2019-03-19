@@ -16,7 +16,6 @@ router.post("/stripe", async (req, res) => {
 
     req.user.credits += 5; 
     const user = await req.user.save(); 
-    user.loggedIn = true; 
     res.send(user);
 
 });

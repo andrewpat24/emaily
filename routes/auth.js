@@ -17,13 +17,7 @@ router.get('/google/callback',
 router.get('/current_user', 
     (req, res) => {
         console.log(req.user, req.session);
-
-        const returnObject = {
-            "loggedIn": !!req.user, 
-            userObj: req.user
-        }
-
-        res.send(returnObject);
+        res.send(req.user);
     }
 );
 
