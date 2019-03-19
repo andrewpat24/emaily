@@ -39,7 +39,6 @@ const rootRouter = require('./routes/root');
 
 app.use('/auth', authRouter);
 app.use('/billing', billingRouter);
-app.use('/', rootRouter);
 
 // Production Client Assets
 if ( process.env.NODE_ENV === 'production' ) {
@@ -48,7 +47,7 @@ if ( process.env.NODE_ENV === 'production' ) {
     app.get("*", (req, res) => {
 
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-        
+
     });
 
 }
