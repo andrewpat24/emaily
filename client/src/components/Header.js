@@ -6,16 +6,10 @@ import Payments from './Payments';
 class Header extends Component {
 
     renderContent() {
-
+        console.log(process.env.REACT_APP_STRIPE_KEY);
         let isLoggedIn = !!this.props.auth
     
         switch (isLoggedIn) {
-            case null: 
-                return;
-                break; 
-            case undefined: 
-                return;
-                break; 
             case false: 
                 return (
                     <Fragment>
