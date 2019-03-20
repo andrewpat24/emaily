@@ -7,12 +7,9 @@ class Header extends Component {
 
     renderContent() {
 
-        let AuthState = this.props.auth
-        if( this.props.auth !== null || this.props.auth !== undefined) {
-            AuthState = this.props.auth; 
-        }
-
-        switch (AuthState) {
+        let isLoggedIn = !!this.props.auth
+    
+        switch (isLoggedIn) {
             case null: 
                 return;
                 break; 
@@ -27,9 +24,10 @@ class Header extends Component {
                 )
                 break; 
             default: 
+                console.log("AuthState:", isLoggedIn);
                 return (
                     <Fragment>
-                        
+
                         <li style={{
                             margin: '0 5px'
                         }}> 
@@ -46,13 +44,8 @@ class Header extends Component {
     }
 
     render () {
-        console.log("auth:", this.props.auth);
-
-        let AuthState = this.props.auth
-        if( this.props.auth !== null ) {
-            AuthState = this.props.auth.loggedIn
-        }
-
+ 
+        let AuthState = this.props.auth;
         return (
             <nav>
                 <div className="nav-wrapper" >
