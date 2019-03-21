@@ -13,7 +13,7 @@ class Header extends Component {
             case false: 
                 return (
                     <Fragment>
-                        <li> <a href="/auth/google">Login with Google</a> </li>
+                        <li> <a href="/api/auth/google">Login with Google</a> </li>
                     </Fragment>
                 )
                 break; 
@@ -30,7 +30,7 @@ class Header extends Component {
 
                         </li> 
                         <li > <a><Payments /></a> </li>
-                        <li > <a href="/auth/logout">Logout</a> </li>
+                        <li > <a href="/api/auth/logout">Logout</a> </li>
                     </Fragment>
                 )
         }

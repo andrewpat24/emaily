@@ -38,9 +38,9 @@ const authRouter = require('./routes/auth');
 const billingRouter = require('./routes/billing');
 const surveyRouter = require('./routes/survey');
 
-app.use('/auth', authRouter);
-app.use('/billing', billingRouter);
-app.use('/survey', surveyRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/billing', billingRouter);
+app.use('/api/survey', surveyRouter);
 
 // Prod Client Routes
 if (process.env.NODE_ENV === 'production') {
