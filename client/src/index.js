@@ -7,8 +7,12 @@ import reduxThunk from 'redux-thunk';
 
 import App from './components/App';
 import reducers from './reducers';
+
+// TODO: REMOVE THIS ASAP 
+// DEV ONLY!!!!!!!!
 import axios from 'axios';
 window.axios = axios; 
+// ----------------
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
