@@ -12,12 +12,13 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"", 
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Andrew Patterson",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
     "cookie-session": "^2.0.0-beta.3",
@@ -29,6 +30,7 @@
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "process-env": "^1.1.0",
+    "sendgrid": "^5.2.3",
     "stripe": "^6.28.0"
   }
 }

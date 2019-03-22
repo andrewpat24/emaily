@@ -33,6 +33,8 @@ require('./services/passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
+// TODO: Set default server route prefix 
+
 // Routes 
 const authRouter = require('./routes/auth');
 const billingRouter = require('./routes/billing');
@@ -45,5 +47,6 @@ app.use('/api/survey', surveyRouter);
 // Prod Client Routes
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build')); 
-    app.use('*', express.static('client/build')); // Added this     
+    app.use('*', express.static('client/build')); 
 }
+
