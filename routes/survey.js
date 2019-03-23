@@ -13,7 +13,7 @@ const requireLogin = require('../middleware/requireLogin');
 const requireCredits = require('../middleware/requireCredits');
 
 // Routes
-router.post('/', requireLogin, requireCredits, (req, res) => {
+router.post('/', requireLogin, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body; 
     console.log(recipients);
     const survey = new Survey ({
@@ -26,7 +26,25 @@ router.post('/', requireLogin, requireCredits, (req, res) => {
     });
 
     const mailer = new Mailer(survey, surveyTemplate(survey));
-    mailer.send(); 
+    try {
+        await mailer.send(); 
+    } catch (e) {
+        console.log("Error sending email:", e);
+        res.status(422).send(e); 
+    } 
+
+    try {
+        await survey.save(); 
+    } catch (e) {
+        console.log("Error saving survey to db:", e);
+        res.status(422).send(e); 
+    }
+
+    req.user.credits -= 1; 
+    // req.user is now out of date. Use userModel instead of req.user anywhere needed under this request. 
+    const userModel = await req.user.save(); 
+    res.send(userModel);
+
 });
 
 

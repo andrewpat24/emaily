@@ -7,8 +7,8 @@ module.exports = (survey) => {
                 <p>Please mark yes or no for the following question: </p>
                 <p>${survey.body}</p>
                 <div>
-                    <a href="http://localhost:3000">yes</a>
-                    <a href="http://localhost:3000">no</a>
+                    <a href="${process.env.RESPONSE_REDIRECT}/thanks">yes</a>
+                    <a href="${process.env.RESPONSE_REDIRECT}/thanks">no</a>
                 </div>
             </div>
         </body>
