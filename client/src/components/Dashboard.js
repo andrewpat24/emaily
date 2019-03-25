@@ -13,8 +13,8 @@ const Dashboard = () => {
 
             <div className="componentButton">
                 <div className="fixed-action-btn">
-                    <Link to="/surveys/new" class="btn-floating btn-large waves-effect waves-light red">
-                        <i class="material-icons dp48">add</i>
+                    <Link to="/surveys/new" className="btn-floating btn-large waves-effect waves-light red">
+                        <i className="material-icons dp48">add</i>
                     </Link>
                 </div>
             </div>
