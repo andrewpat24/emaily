@@ -32,7 +32,7 @@ class SurveyForm extends Component {
 
                 <Field 
                     type="text"
-                    name="emails"
+                    name="recipients"
                     label="Recipient List"
                     component={SurveyField}
                 />

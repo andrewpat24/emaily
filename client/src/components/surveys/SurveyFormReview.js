@@ -24,7 +24,7 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey }) => {
                 </div>
                 <div>
                     <label>Recipient List</label>
-                    <div>{formValues.emails}</div>
+                    <div>{formValues.recipients}</div>
                 </div>
             </div>
 
