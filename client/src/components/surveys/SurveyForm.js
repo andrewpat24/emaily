@@ -46,9 +46,7 @@ class SurveyForm extends Component {
             <div>
                 <form
                     onSubmit={
-                        this.props.handleSubmit((values) => {
-                            console.log(values);
-                        })
+                        this.props.handleSubmit(this.props.onSurveySubmit)
                     }
                 >
                     {this.renderFields()}
@@ -102,5 +100,6 @@ function validate (values) {
 
 export default reduxForm({
     validate: validate,
-    form: 'surveyForm'
+    form: 'surveyForm', 
+    destroyOnUnmount: false
 })(SurveyForm); 
