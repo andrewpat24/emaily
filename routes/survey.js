@@ -1,11 +1,13 @@
 // Imports
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-const Survey = mongoose.model('surveys');
 const _ = require('lodash');
 const Path = require('path-parser').default;
 const { URL } = require('url');
+
+// Mongoose
+const mongoose = require('mongoose');
+const Survey = mongoose.model('surveys');
 
 // Services
 const Mailer = require('../services/Mailer');
@@ -16,6 +18,10 @@ const requireLogin = require('../middleware/requireLogin');
 const requireCredits = require('../middleware/requireCredits');
 
 // Routes
+router.get('/:surveyId/:choice', (req, res) => {
+    res.redirect('/thanks')
+});
+
 router.post('/', requireLogin, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body; 
     console.log(recipients);
@@ -69,6 +75,26 @@ router.post('/webhook', (req, res) => {
 
     const compactEvents = _.compact(events);
     const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId');
+    uniqueEvents.forEach( ({surveyId, email, choice}) => {
+        Survey.updateOne({
+            _id: surveyId, 
+            recipients: {
+                $elemMatch:{
+                    email: email, 
+                    responded: false
+                }
+            }
+        }, {
+            $inc: {
+                [choice]: 1
+            }, 
+            $set: {
+                'recipients.$.responded': true
+            }, 
+            lastResponded: new Date()
+        }).exec();
+    } );
+
     console.log(uniqueEvents);
     res.send({});
 
