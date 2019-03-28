@@ -89,10 +89,10 @@ function validate (values) {
     }
 
     // Email validators
-    errors.emails = validateEmails(values.emails);
+    errors.recipients = validateEmails(values.recipients);
 
-    if(!values.emails) {
-        errors.emails = 'You must provide comma-seperated emails.';
+    if(!values.recipients) {
+        errors.recipients = 'You must provide comma-seperated emails.';
     }
     
     return errors;

@@ -3,6 +3,9 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Survey = mongoose.model('surveys');
+const _ = require('lodash');
+const Path = require('path-parser').default;
+const { URL } = require('url');
 
 // Services
 const Mailer = require('../services/Mailer');
@@ -47,6 +50,29 @@ router.post('/', requireLogin, requireCredits, async (req, res) => {
 
 });
 
+router.post('/webhook', (req, res) => {
+    const p = new Path('/api/survey/:surveyId/:choice');
+    const events = _.map(req.body, (event) => {
+
+        const pathName = new URL(event.url).pathname;
+        const match = p.test(pathName); 
+
+        if(match) {
+            
+            return {
+                email: event.email, 
+                surveyId: match.surveyId, 
+                choice: match.choice
+            }; 
+        }
+    });
+
+    const compactEvents = _.compact(events);
+    const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId');
+    console.log(uniqueEvents);
+    res.send({});
+
+});
 
 // Export
 module.exports = router; 
