@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import SurveyList from './surveys/SurveyList';
 
 const Dashboard = () => {
     return (
@@ -8,9 +9,9 @@ const Dashboard = () => {
             style={{
                 textAlign: 'center'
             }}>
-                <h1>Dashboard</h1>
+                <h3>Dashboard</h3>
             </div>
-
+            <SurveyList /> 
             <div className="componentButton">
                 <div className="fixed-action-btn">
                     <Link to="/surveys/new" className="btn-floating btn-large waves-effect waves-light red">
