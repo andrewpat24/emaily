@@ -56,6 +56,15 @@ router.post('/', requireLogin, requireCredits, async (req, res) => {
 
 });
 
+// Retrieves all surveys of current user
+router.get('/all', requireLogin, async (req, res) => {
+    const surveys = await Survey.find({
+        _user: req.user.id
+    });
+    res.send(surveys);
+
+});
+
 router.post('/webhook', (req, res) => {
     const p = new Path('/api/survey/:surveyId/:choice');
     const events = _.map(req.body, (event) => {
