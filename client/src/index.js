@@ -10,8 +10,10 @@ import reducers from './reducers';
 
 // TODO: REMOVE THIS ASAP 
 // DEV ONLY!!!!!!!!
-import axios from 'axios';
-window.axios = axios; 
+if(process.env.NODE_ENV === "dev"){
+    import axios from 'axios';
+    window.axios = axios; 
+} 
 // ----------------
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
